@@ -26,7 +26,7 @@ namespace DataBasesCourseWorkApplication.Context
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.
-                    UseSqlServer("Server=localhost; Database=FacultyDb;Trusted_Connection=true;");
+                    UseSqlServer("Server=localhost;Database=FacultyDb;Trusted_Connection=true;");
             }
         }
 
