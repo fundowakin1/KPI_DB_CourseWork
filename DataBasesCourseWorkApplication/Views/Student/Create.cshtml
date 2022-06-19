@@ -1,0 +1,71 @@
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@model DataBasesCourseWorkApplication.ViewModel.StudentCreateAndEditViewModel
+@{
+    ViewBag.Title = "Додати студента до бази";
+}
+
+<div class="mb-1">
+    <div class="text-center">
+        <h2 style="font-weight: bold">Додати студента до бази</h2>
+    </div>
+    <div class="row">
+        @using (Html.BeginForm("Create", "Student"))
+        {
+            <div class="mb-1">
+                @Html.HiddenFor(m => m.Id)
+                <h2>ПІБ студента</h2>
+                @Html.TextBoxFor(m => m.FullName
+                    , new { @class = "form-control w-50", type = "text", placeholder = "Введіть ПІБ студента" })
+                <div class="mb-1 h4 text-center" style="margin: 0 auto; text-decoration: none; color: #d6094a; width: 26%">
+                    @Html.ValidationMessageFor(m => m.FullName)
+                </div>
+            </div>
+            <div class="mb-1">
+                <h2>Номер телефону студента</h2>
+                @Html.TextAreaFor(m => m.PhoneNumber,
+                    new { @class = "form-control w-50", placeholder = "Введіть телефон студента" })
+                <div class="mb-1 h4 text-center" style="margin: 0 auto; text-decoration: none; color: #d6094a; width: 26%">
+                    @Html.ValidationMessageFor(m => m.PhoneNumber)
+                </div>
+            </div>
+            <div class="mb-1">
+                <h2>Стать студента</h2>
+                <div>
+                    @Html.RadioButton("gender", true,
+                        new {id = "IsMale"}) Чоловік
+                    @Html.RadioButton("gender", false,
+                        new {id = "IsFemale"}) Жінка
+                </div>
+                <div class="mb-1 h4 text-center" style="margin: 0 auto; text-decoration: none; color: #d6094a; width: 26%">
+                    @Html.ValidationMessageFor(m => m.Gender)
+                </div>
+            </div>
+            <div class="mb-1">
+                <h2>Субсидія</h2>
+                @Html.RadioButton("subsidy", true,
+                    new {id = "Has"}) Наявна
+                @Html.RadioButton("subsidy", false,
+                    new {id = "Hasnt"}) Відсутня
+                <div class="mb-1 h4 text-center" style="margin: 0 auto; text-decoration: none; color: #d6094a; width: 26%">
+                    @Html.ValidationMessageFor(m => m.Benefit)
+                </div>
+            </div>
+            <div class="mb-1">
+                <h2>Факультет студента</h2>
+                @Html.DropDownListFor(m => m.FacultyName, Model.FacultiesName,
+                    new { @class = "form-control", style = "width: 50%" })
+            </div>
+            @Html.HiddenFor(m=>m.RoomId);
+            <div>
+                <button type="submit" class="btn-outline-light btn btn-lg btn-danger ">
+                    Додати
+                </button>
+            </div>
+            <div>
+                <button type="button" class="btn-outline-light btn btn-lg btn-dark" onclick="location = '@Url.Action("Index","Home")'">
+                    Повернутися назад
+                </button>
+            </div>
+        }
+    </div>
+</div>

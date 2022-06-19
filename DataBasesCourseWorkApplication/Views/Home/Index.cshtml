@@ -1,36 +1,5 @@
-﻿@model List<DataBasesCourseWorkApplication.ViewModel.StudentFullInfoViewModel>
-@{
-    ViewData["Title"] = "Курсова з дисципліни Бази Даних";
-}
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">ПІБ</th>
-        <th scope="col">Стать</th>
-        <th scope="col">Номер телефону</th>
-        <th scope="col">Факультет</th>
-        <th scope="col">Номер кімнати</th>
-    </tr>
-    </thead>
-    <tbody>
-    @for (int i = 0; i < Model.Count; i++)
-    {
-        <tr>
-            <th scope="row">@(i+1)</th>
-            <td>@Model[i].FullName</td>
-
-            <td>@if(Model[i].Gender)
-                {<p>Чол</p>}
-                else
-                {<p>Жін</p>}</td>
-            <td>+@Model[i].PhoneNumber</td>
-            <td>@Model[i].FacultyName</td>
-            <td>@if(Model[i].RoomId is null)
-                {<p>нема кімнати, соси</p>}
-                else
-                {@Model[i].RoomNumber}</td>
-        </tr>
-    }
-    </tbody>
-</table>
+﻿<div>
+    <button type="button" class="btn btn-secondary btn-lg btn-block"  onclick="location='@Url.Action("MainPage")'">Список студентів</button>
+    <button type="button" class="btn btn-secondary btn-lg btn-block"  onclick="location = '@Url.Action("Create", "Student")'">Додати студента</button>
+    <button type="button" class="btn btn-secondary btn-lg btn-block"  onclick="location='@Url.Action("About", "Home")'">Про проект</button>
+</div>

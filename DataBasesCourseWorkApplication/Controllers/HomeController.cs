@@ -23,11 +23,20 @@ namespace DataBasesCourseWorkApplication.Controllers
 
         public IActionResult Index()
         {
+            return View();
+        }
+        public IActionResult About()
+        {
+            return View();
+        }
+        public IActionResult MainPage()
+        {
             var students = _context.Students
                 .Join(_context.Faculties, student => student.FacultyId,
                     faculty => faculty.Id,
                     (student, faculty) => new StudentFullInfoViewModel()
                     {
+                        StudentId = student.Id,
                         FullName = student.FullName,
                         Benefit = student.Benefit,
                         FacultyName = faculty.Name,
@@ -39,6 +48,7 @@ namespace DataBasesCourseWorkApplication.Controllers
                 .Where(x => x.RoomId != null)
                 .Join(_context.Rooms, model => model.RoomId, room => room.Id, (model, room) => new StudentFullInfoViewModel()
                 {
+                    StudentId = model.StudentId,
                     FullName = model.FullName,
                     Benefit = model.Benefit,
                     FacultyName = model.FacultyName,
